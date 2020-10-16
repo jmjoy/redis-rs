@@ -122,7 +122,7 @@ mod tokio_aio {
 }
 
 /// Represents an async Connection (TCP or Unix. Tokio or Async Std)
-pub(crate) enum ActualConnection {
+pub enum ActualConnection {
     /// Represents a Tokio TCP connection.
     #[cfg(feature = "tokio-comp")]
     TcpTokio(TcpStreamTokio),
@@ -307,7 +307,7 @@ impl PubSub {
 
 /// Represents a stateful redis TCP connection.
 pub struct Connection {
-    con: ActualConnection,
+    pub con: ActualConnection,
     buf: Vec<u8>,
     decoder: combine::stream::Decoder<AnySendSyncPartialState, PointerOffset<[u8]>>,
     db: i64,
